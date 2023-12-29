@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/Roosa-Pasanen/learn-English/issues"
   },
-  "homepage": "https://github.com/Roosa-Pasanen/learn-English#readme"
+  "homepage": "https://github.com/Roosa-Pasanen/learn-English#readme",
+  "devDependencies": {
+    "eslint": "^8.56.0"
+  },
+  "dependencies": {
+    "mysql": "^2.18.1"
+  }
 }

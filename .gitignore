@@ -132,3 +132,6 @@ dist
 
 # Local git commit template
 .gitmessage
+
+# Local linter commit files
+.eslintrc.js
