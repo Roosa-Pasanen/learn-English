@@ -32,3 +32,5 @@ connection.connect((err) => {
       });
   }
 });
+
+app.use("/api/wordbank", locationsRouter);
