@@ -9,17 +9,13 @@ const connection = mysql.createConnection({
 });
 
 const databaseFunctions = {
-  connect: () => {
-    return new Promise((resolve, reject) => {
-      try {
-        connection.connect();
-        resolve();
-      } catch (err) {
-        reject(err);
-      }
+  connect: (callback) => {
+    connection.connect((err) => {
+      //If error, return error, otherwise return nothing
+      err ? callback(err) : callback();
     });
   },
-  close: () => {
+  close: (callback) => {
     return new Promise((resolve, reject) => {
       try {
         connection.close();
