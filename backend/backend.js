@@ -5,7 +5,7 @@ const { connect, close } = require("/.connect.js");
 const port = 8080; // Define the port on which the server will run
 
 let server = undefined;
-connection.connect((err) => {
+connect((err) => {
   // mysql connection
   if (err) {
     console.error("Error connecting to MySQL:", err);
