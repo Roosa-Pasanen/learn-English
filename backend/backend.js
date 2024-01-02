@@ -24,4 +24,29 @@ connect((err) => {
   }
 });
 
+const gracefulShutdown = () => {
+  console.log("Starting graceful shutdown...");
+  if (server) {
+    console.log("Server was opened, so we can close it...");
+    server.close((err) => {
+      // Give error message if server closing does not work
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("Server stopped.");
+      }
+    });
+    console.log("Starting graceful shutdown... (mysql)");
+    close((err) => {
+      // Try to close db, give errors is that does not work
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("Connection closed.");
+      }
+    });
+  }
+  console.log("Shutdown complete.");
+};
+
 app.use("/api/wordbank", router);
