@@ -24,6 +24,8 @@ connect((err) => {
   }
 });
 
+app.use("/api/wordbank", router);
+
 const gracefulShutdown = () => {
   console.log("Starting graceful shutdown...");
   if (server) {
@@ -49,4 +51,5 @@ const gracefulShutdown = () => {
   console.log("Shutdown complete.");
 };
 
-app.use("/api/wordbank", router);
+process.on("SIGTERM", gracefulShutdown); // Some other app requirest shutdown.
+process.on("SIGINT", gracefulShutdown); // ctrl-c
