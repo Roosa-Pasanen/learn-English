@@ -135,3 +135,6 @@ dist
 
 # Local linter commit files
 .eslintrc.js
+
+# testing files
+test.http
