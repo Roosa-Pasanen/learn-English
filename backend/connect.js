@@ -16,13 +16,10 @@ const databaseFunctions = {
     });
   },
   close: (callback) => {
-    return new Promise((resolve, reject) => {
-      try {
-        connection.close();
-        resolve();
-      } catch (err) {
-        reject(err);
-      }
+    connection.end((err) => {
+      //If error, return error, otherwise return nothing
+      console.log("closing");
+      err ? callback(err) : callback();
     });
   },
   findData: (q) => {
