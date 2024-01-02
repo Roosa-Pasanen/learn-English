@@ -19,6 +19,16 @@ const databaseFunctions = {
       }
     });
   },
+  close: () => {
+    return new Promise((resolve, reject) => {
+      try {
+        connection.close();
+        resolve();
+      } catch (err) {
+        reject(err);
+      }
+    });
+  },
   findData: (q) => {
     return new Promise((resolve, reject) => {
       connection.query(q, (err, result) => {
