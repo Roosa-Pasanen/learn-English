@@ -9,6 +9,16 @@ const connection = mysql.createConnection({
 });
 
 const databaseFunctions = {
+  connect: () => {
+    return new Promise((resolve, reject) => {
+      try {
+        connection.connect();
+        resolve();
+      } catch (err) {
+        reject(err);
+      }
+    });
+  },
   findData: (q) => {
     return new Promise((resolve, reject) => {
       connection.query(q, (err, result) => {
