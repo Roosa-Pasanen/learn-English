@@ -1,6 +1,7 @@
 const express = require("express"); // Import the express module
 const app = express(); // Create an instance of an express application
 const router = require("./routes/wordBank.js");
+const { connect, close } = require("/.connect.js");
 const port = 8080; // Define the port on which the server will run
 
 let server = undefined;
