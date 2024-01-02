@@ -7,3 +7,20 @@ const connection = mysql.createConnection({
   database: process.env.DATABASE,
   multipleStatements: true,
 });
+
+const databaseFunctions = {
+  findData: (q) => {
+    return new Promise((resolve, reject) => {
+      connection.query(q, (err, result) => {
+        // Error handling
+        if (err) {
+          reject({ err });
+        }
+        //Return all data
+        resolve(result);
+      });
+    });
+  },
+};
+
+module.exports = databaseFunctions;
