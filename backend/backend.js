@@ -1,4 +1,5 @@
 const express = require("express"); // Import the express module
+const cors = require("cors");
 const app = express(); // Create an instance of an express application
 const router = require("./routes/wordBank.js");
 const { connect, close } = require("./connect.js");
@@ -24,6 +25,7 @@ connect((err) => {
   }
 });
 
+app.use(cors());
 app.use("/api/wordbank", router);
 
 const gracefulShutdown = () => {
