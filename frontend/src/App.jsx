@@ -6,7 +6,8 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={""} />
+          <Route path="/" element={"wip"} />
+          <Route path="/test" element={""} />
         </Routes>
       </BrowserRouter>
     </>
