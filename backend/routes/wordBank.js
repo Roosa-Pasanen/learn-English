@@ -11,7 +11,7 @@ router.get("/", async (req, res) => {
         AND langPairId = ${1};`;
     //get data
     const wordbank = await connect.findData(quer);
-    console.log(wordbank);
+    res.send(wordbank);
   } catch (err) {
     res.json(err);
   }
