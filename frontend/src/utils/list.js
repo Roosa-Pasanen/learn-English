@@ -20,3 +20,5 @@ const plainList = (l, end1, end2, s) => {
   }
   return fullList;
 };
+
+export default { plainList };
