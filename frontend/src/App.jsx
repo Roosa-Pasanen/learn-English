@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
+import PrepTest from "./PrepTest";
 
 function App() {
   return (
@@ -7,7 +8,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={"wip"} />
-          <Route path="/test" element={""} />
+          <Route path="/test" element={<PrepTest />} />
         </Routes>
       </BrowserRouter>
     </>
