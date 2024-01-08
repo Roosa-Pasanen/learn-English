@@ -39,5 +39,12 @@ export default function PrepTest() {
     dataFetch();
   }, []);
 
-  return <div>{displayState}</div>;
+  return (
+    <div>
+      <div>{displayState}</div>
+      <button>
+        <Link to={"begin"}>{"Begin"}</Link>
+      </button>
+    </div>
+  );
 }
