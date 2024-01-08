@@ -1,12 +1,12 @@
 const connector = {
-  fetchInfo: () => {
+  fetchInfo: (callback) => {
     fetch(`${import.meta.env.VITE_API_URL}/api/wordbank`)
       .then((res) => res.json())
       .then((data) => {
-        return data;
+        callback(data);
       })
       .catch((err) => {
-        return err;
+        callback(err);
       });
   },
 };
