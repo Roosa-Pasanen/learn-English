@@ -1,6 +1,9 @@
 import connector from "./utils/connector.js";
+import { useState, useEffect } from "react";
 
 export default function PrepTest() {
+  const [displayState, setDisplayState] = useState("...");
+
   /**
    * A function for parsing object lists into text lists
    *
@@ -11,27 +14,29 @@ export default function PrepTest() {
    * @returns - Parsed list
    */
 
-  const plainList = (l, end1, end2, s) => {
+  const plainList = (l, s, callback) => {
     let fullList = [];
     for (let i = 0; i < l.length; i++) {
-      const temp = (
-        <div key={i}>
-          {l[i].end1} {s} {l[i + 1].end2}
-        </div>
-      );
+      const temp = <div key={i}>{l[i].fin + s + l[i].eng}</div>;
       fullList.push(temp);
     }
-    return fullList;
+    callback(fullList);
   };
 
-  const list = async () => {
-    const info = await connector.fetchInfo();
-    if (info == undefined) {
-      return <div>loading</div>;
-    } else {
-      return plainList(info, "fin", "eng", "-");
-    }
-  };
+  useEffect(() => {
+    const dataFetch = () => {
+      try {
+        connector.fetchInfo((res) => {
+          plainList(res, "-", (res) => {
+            setDisplayState(res);
+          });
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    dataFetch();
+  }, []);
 
-  return list();
+  return <div>{displayState}</div>;
 }
