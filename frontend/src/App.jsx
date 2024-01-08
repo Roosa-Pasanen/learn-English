@@ -9,6 +9,7 @@ function App() {
         <Routes>
           <Route path="/" element={"wip"} />
           <Route path="/test" element={<PrepTest />} />
+          <Route path="/test/begin" element={"loading"} />
         </Routes>
       </BrowserRouter>
     </>
