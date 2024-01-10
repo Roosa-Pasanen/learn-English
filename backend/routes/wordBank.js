@@ -5,7 +5,7 @@ router.use(express.json());
 
 router.get("/", async (req, res) => {
   try {
-    const quer = `SELECT w1.name as fin, w2.name as eng
+    const quer = `SELECT w1.name as lang1, w2.name as lang2
         FROM word as w1 INNER JOIN wordPair INNER JOIN word as w2
         WHERE pairId1 = w1.id AND pairId2 = w2.id
         AND langPairId = ${1};`;

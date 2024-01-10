@@ -19,7 +19,7 @@ export default function PrepTest() {
   const plainList = (l, s, callback) => {
     let fullList = [];
     for (let i = 0; i < l.length; i++) {
-      const temp = <div key={i}>{l[i].fin + s + l[i].eng}</div>;
+      const temp = <div key={i}>{l[i].lang1 + s + l[i].lang2}</div>;
       fullList.push(temp);
     }
     callback(fullList);
