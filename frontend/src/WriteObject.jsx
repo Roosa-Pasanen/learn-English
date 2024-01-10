@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function WriteObject(props) {
   const [prompt] = useState(props.lang1);
   const [cAnswer] = useState(props.lang2);
   const [answer, setAnswer] = useState("");
-  const [check] = useState(props.check);
+  const [check, setCheck] = useState(props.check);
+
+  useEffect(() => setCheck(props.check), [props.check]);
 
   const test = () => {
     return (
@@ -36,6 +38,7 @@ export default function WriteObject(props) {
   };
 
   const toCheck = () => {
+    console.log(check);
     if (!check) {
       return test();
     } else {

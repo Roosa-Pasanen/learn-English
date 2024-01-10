@@ -8,7 +8,6 @@ export default function WriteTest() {
 
   const createList = () => {
     const promptList = location.state.prompts;
-    console.log(promptList);
     let questionList = [];
     for (let i = 0; i < promptList.length; i++) {
       questionList.push(
@@ -20,7 +19,6 @@ export default function WriteTest() {
         />
       );
     }
-    console.log(questionList);
     return <div>{questionList}</div>;
   };
 
