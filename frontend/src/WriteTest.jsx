@@ -18,5 +18,20 @@ export default function WriteTest() {
       );
       questionList.push(temp);
     }
+
+    return { questionList };
   };
+
+  return (
+    <div>
+      <div>{createList()}</div>
+      <button
+        onClick={() => {
+          setCheckState(true);
+        }}
+      >
+        Submit
+      </button>
+    </div>
+  );
 }
