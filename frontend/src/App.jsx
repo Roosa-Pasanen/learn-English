@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import PrepTest from "./PrepTest";
+import WriteTest from "./WriteTest";
 
 function App() {
   return (
@@ -9,7 +10,7 @@ function App() {
         <Routes>
           <Route path="/" element={"wip"} />
           <Route path="/test" element={<PrepTest />} />
-          <Route path="/test/begin" element={"loading"} />
+          <Route path="/test/begin" element={<WriteTest />} />
         </Routes>
       </BrowserRouter>
     </>
