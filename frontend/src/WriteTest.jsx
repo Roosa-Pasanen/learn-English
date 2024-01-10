@@ -3,23 +3,25 @@ import { useState } from "react";
 import WriteObject from "./WriteObject.jsx";
 
 export default function WriteTest() {
-  const { promptList } = useLocation();
+  const location = useLocation();
   const [checkState, setCheckState] = useState(false);
 
   const createList = () => {
+    const promptList = location.state.prompts;
+    console.log(promptList);
     let questionList = [];
     for (let i = 0; i < promptList.length; i++) {
-      const temp = (
+      questionList.push(
         <WriteObject
+          key={i}
           lang1={promptList[i].lang1}
           lang2={promptList[i].lang2}
           check={checkState}
         />
       );
-      questionList.push(temp);
     }
-
-    return { questionList };
+    console.log(questionList);
+    return <div>{questionList}</div>;
   };
 
   return (
