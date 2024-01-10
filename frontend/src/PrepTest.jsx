@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function PrepTest() {
   const [displayState, setDisplayState] = useState("...");
+  const [promptList, setPromptList] = useState([]);
 
   /**
    * A function for parsing object lists into text lists
@@ -28,6 +29,7 @@ export default function PrepTest() {
     const dataFetch = () => {
       try {
         connector.fetchInfo((res) => {
+          setPromptList(res);
           plainList(res, "-", (res) => {
             setDisplayState(res);
           });
