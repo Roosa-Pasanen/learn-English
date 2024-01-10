@@ -45,7 +45,9 @@ export default function PrepTest() {
     <div>
       <div>{displayState}</div>
       <button>
-        <Link to={"begin"}>{"Begin"}</Link>
+        <Link to={"begin"} state={{ prompts: promptList }}>
+          {"Begin"}
+        </Link>
       </button>
     </div>
   );
