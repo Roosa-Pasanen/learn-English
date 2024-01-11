@@ -8,6 +8,9 @@ export default function WriteTest() {
 
   const createList = () => {
     const promptList = location.state.prompts;
+    if (promptList.length == 0 || promptList == undefined) {
+      return <div>Error: No content</div>;
+    }
     let questionList = [];
     for (let i = 0; i < promptList.length; i++) {
       questionList.push(
