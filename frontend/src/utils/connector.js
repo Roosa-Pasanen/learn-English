@@ -9,8 +9,8 @@ const connector = {
         callback(err);
       });
   },
-  putEntry: (callback, wordId, id, name, langId) => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/wordbank`, {
+  putEntry: (callback, id, name, type) => {
+    fetch(`${import.meta.env.VITE_API_URL}/api/wordbank/${type}`, {
       method: "put",
       headers: {
         "Content-type": "application/json; charset=UTF-8",
@@ -18,7 +18,6 @@ const connector = {
       body: JSON.stringify({
         id,
         name,
-        langId,
       }),
     });
   },

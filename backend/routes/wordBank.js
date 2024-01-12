@@ -23,8 +23,17 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.put("/", async (req, res) => {
-  //to be continued
+router.put("/word", async (req, res) => {
+  try {
+    const q = `UPDATE word
+  SET name = "${req.body.name}"
+  WHERE id = ${req.body.id};`;
+    await connect.contact(q);
+    res.send("Success!");
+  } catch (error) {
+    console.log(error);
+    res.json(error);
+  }
 });
 
 module.exports = router;

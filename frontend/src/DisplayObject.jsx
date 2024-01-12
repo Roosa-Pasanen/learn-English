@@ -34,6 +34,7 @@ export default function DisplayObject(props) {
           <button
             onClick={() => {
               setEditable(false);
+              toSave();
             }}
           >
             Save
@@ -58,8 +59,16 @@ export default function DisplayObject(props) {
     );
   };
 
+  const toSave = () => {
+    if (prompt !== newPrompt) {
+      connector.putEntry({}, props.wordId1, newPrompt, "word");
+    }
+    if (answer !== newAnswer) {
+      connector.putEntry({}, props.wordId2, newAnswer, "word");
+    }
+  };
+
   const isEditable = () => {
-    console.log(editable);
     if (!editable) {
       return display();
     } else {
