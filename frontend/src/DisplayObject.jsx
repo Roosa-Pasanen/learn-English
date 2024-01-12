@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import connector from "./utils/connector.js";
 
 export default function DisplayObject(props) {
-  const [prompt] = useState(props.word1);
-  const [answer] = useState(props.word2);
+  const [prompt, setPrompt] = useState(props.word1);
+  const [answer, setAnswer] = useState(props.word2);
   const [editable, setEditable] = useState(false);
   const [newPrompt, setNewPrompt] = useState(props.word1);
   const [newAnswer, setNewAnswer] = useState(props.word2);
@@ -27,6 +27,7 @@ export default function DisplayObject(props) {
           <button
             onClick={() => {
               setEditable(false);
+              toSave(false);
             }}
           >
             Cancel
@@ -34,7 +35,7 @@ export default function DisplayObject(props) {
           <button
             onClick={() => {
               setEditable(false);
-              toSave();
+              toSave(true);
             }}
           >
             Save
@@ -59,12 +60,19 @@ export default function DisplayObject(props) {
     );
   };
 
-  const toSave = () => {
-    if (prompt !== newPrompt) {
-      connector.putEntry({}, props.wordId1, newPrompt, "word");
-    }
-    if (answer !== newAnswer) {
-      connector.putEntry({}, props.wordId2, newAnswer, "word");
+  const toSave = (save) => {
+    if (save) {
+      if (prompt !== newPrompt) {
+        connector.putEntry({}, props.wordId1, newPrompt, "word");
+        setPrompt(newPrompt);
+      }
+      if (answer !== newAnswer) {
+        connector.putEntry({}, props.wordId2, newAnswer, "word");
+        setAnswer(newAnswer);
+      }
+    } else {
+      setNewPrompt(prompt);
+      setNewAnswer(answer);
     }
   };
 
