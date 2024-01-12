@@ -22,7 +22,7 @@ const databaseFunctions = {
       err ? callback(err) : callback();
     });
   },
-  findData: (q) => {
+  contact: (q) => {
     return new Promise((resolve, reject) => {
       connection.query(q, (err, result) => {
         // Error handling

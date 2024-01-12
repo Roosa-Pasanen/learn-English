@@ -13,14 +13,18 @@ router.get("/", async (req, res) => {
         INNER JOIN wordPair
         INNER JOIN word as w2 INNER JOIN language as l2
         WHERE pairId1 = w1.id AND pairId2 = w2.id
-        AND l1.id = w1.langId AND l2.id = w2langId
+        AND l1.id = w1.langId AND l2.id = w2.langId
         AND langPairId = ${1};`;
     //get data
-    const wordbank = await connect.findData(quer);
+    const wordbank = await connect.contact(quer);
     res.send(wordbank);
   } catch (err) {
     res.json(err);
   }
+});
+
+router.put("/", async (req, res) => {
+  //to be continued
 });
 
 module.exports = router;
