@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 
 export default function DisplayObject(props) {
-  const [prompt] = useState(props.lang1);
-  const [answer] = useState(props.lang2);
+  const [prompt] = useState(props.word1);
+  const [answer] = useState(props.word2);
   const [editable, setEditable] = useState(false);
-  const [newPrompt, setNewPrompt] = useState(props.lang1);
-  const [newAnswer, setNewAnswer] = useState(props.lang2);
+  const [newPrompt, setNewPrompt] = useState(props.word1);
+  const [newAnswer, setNewAnswer] = useState(props.word2);
 
-  useEffect(() => {}, [props.lang1, props.lang2]);
+  useEffect(() => {}, [props.word1, props.word2]);
 
   const editing = () => {
     return (

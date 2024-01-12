@@ -1,4 +1,5 @@
 import connector from "./utils/connector.js";
+import DisplayObject from "./DisplayObject.jsx";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
@@ -19,7 +20,10 @@ export default function PrepTest() {
   const plainList = (l, s, callback) => {
     let fullList = [];
     for (let i = 0; i < l.length; i++) {
-      const temp = <div key={i}>{l[i].lang1 + s + l[i].lang2}</div>;
+      const temp = (
+        <DisplayObject key={i} lang1={l[i].lang1} lang2={l[i].lang2} />
+      );
+      // const temp = <div key={i}>{l[i].lang1 + s + l[i].lang2}</div>;
       fullList.push(temp);
     }
     callback(fullList);

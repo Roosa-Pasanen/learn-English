@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 
 export default function WriteObject(props) {
-  const [prompt] = useState(props.lang1);
-  const [cAnswer] = useState(props.lang2);
+  const [prompt] = useState(props.word1);
+  const [cAnswer] = useState(props.word2);
   const [answer, setAnswer] = useState("");
   const [check, setCheck] = useState(props.check);
 

@@ -16,8 +16,8 @@ export default function WriteTest() {
       questionList.push(
         <WriteObject
           key={i}
-          lang1={promptList[i].lang1}
-          lang2={promptList[i].lang2}
+          word1={promptList[i].word1}
+          word2={promptList[i].word2}
           check={checkState}
         />
       );
