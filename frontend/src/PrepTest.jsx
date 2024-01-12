@@ -17,13 +17,20 @@ export default function PrepTest() {
    * @returns - Parsed list
    */
 
-  const plainList = (l, s, callback) => {
+  const plainList = (l, callback) => {
     let fullList = [];
     for (let i = 0; i < l.length; i++) {
       const temp = (
-        <DisplayObject key={i} lang1={l[i].lang1} lang2={l[i].lang2} />
+        <DisplayObject
+          key={i}
+          word1={l[i].word1}
+          word2={l[i].word2}
+          wordId1={l[i].wordId1}
+          wordId2={l[i].wordId2}
+          langId1={l[i].langId1}
+          langId2={l[i].langId2}
+        />
       );
-      // const temp = <div key={i}>{l[i].lang1 + s + l[i].lang2}</div>;
       fullList.push(temp);
     }
     callback(fullList);
@@ -34,7 +41,7 @@ export default function PrepTest() {
       try {
         connector.fetchInfo((res) => {
           setPromptList(res);
-          plainList(res, "-", (res) => {
+          plainList(res, (res) => {
             setDisplayState(res);
           });
         });
