@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import connector from "./utils/connector.js";
 
 export default function DisplayObject(props) {
   const [prompt] = useState(props.word1);
