@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function WriteObject(props) {
+export default function DisplayObject(props) {
   const [prompt] = useState(props.lang1);
   const [answer] = useState(props.lang2);
   const [editable, setEditable] = useState(false);
@@ -45,8 +45,7 @@ export default function WriteObject(props) {
   const display = () => {
     return (
       <div>
-        <div>{prompt}</div>
-        <div>{answer}</div>
+        {prompt} - {answer}
         <button
           onClick={() => {
             setEditable(true);
