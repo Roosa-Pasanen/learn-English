@@ -47,4 +47,17 @@ router.delete("/word/:id([0-9]+)", async (req, res) => {
   }
 });
 
+router.post("/word", async (req, res) => {
+  try {
+    // Name, languageid
+    const q = `INSERT INTO word (name, langId)
+    VALUES (${req.body.name}, ${req.body.langId});`;
+    await connect.contact(q);
+    res.send("Success!");
+  } catch (error) {
+    console.log(error);
+    res.json(error);
+  }
+});
+
 module.exports = router;
