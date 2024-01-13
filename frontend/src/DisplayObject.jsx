@@ -62,6 +62,15 @@ export default function DisplayObject(props) {
 
   const toSave = (save) => {
     if (save) {
+      if (props.wordId1 == -1 || props.wordId2 == -1) {
+        connector.postWord(
+          {},
+          newPrompt,
+          props.langId1,
+          newAnswer,
+          props.langId2
+        );
+      }
       if (prompt !== newPrompt) {
         connector.putEntry({}, props.wordId1, newPrompt, "word");
         setPrompt(newPrompt);
