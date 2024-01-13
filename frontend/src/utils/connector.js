@@ -19,13 +19,20 @@ const connector = {
         id,
         name,
       }),
-    });
+    })
+      .then((data) => {
+        callback(data);
+      })
+      .catch((err) => {
+        callback(err);
+      });
   },
   deleteEntry: (callback, id, type) => {
     fetch(`${import.meta.env.VITE_API_URL}/api/wordbank/${type}/${id}`, {
       method: "delete",
     });
   },
+  postEntry,
 };
 
 export default connector;
