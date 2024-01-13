@@ -23,11 +23,22 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.put("/word", async (req, res) => {
+router.put("/word/:id([0-9]+)", async (req, res) => {
   try {
     const q = `UPDATE word
   SET name = "${req.body.name}"
-  WHERE id = ${req.body.id};`;
+  WHERE id = ${req.params.id};`;
+    await connect.contact(q);
+    res.send("Success!");
+  } catch (error) {
+    console.log(error);
+    res.json(error);
+  }
+});
+
+router.delete("/word/:id([0-9]+)", async (req, res) => {
+  try {
+    const q = `DELETE from word WHERE id = ${req.params.id};`;
     await connect.contact(q);
     res.send("Success!");
   } catch (error) {
