@@ -20,6 +20,7 @@ const connector = {
         name,
       }),
     })
+      .then((res) => res.json())
       .then((data) => {
         callback(data);
       })
@@ -31,6 +32,26 @@ const connector = {
     fetch(`${import.meta.env.VITE_API_URL}/api/wordbank/${type}/${id}`, {
       method: "delete",
     })
+      .then((res) => res.json())
+      .then((data) => {
+        callback(data);
+      })
+      .catch((err) => {
+        callback(err);
+      });
+  },
+  postWord: (callback, name, langId) => {
+    fetch(`${import.meta.env.VITE_API_URL}/api/wordbank/word`, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+      body: JSON.stringify({
+        name,
+        langId,
+      }),
+    })
+      .then((res) => res.json())
       .then((data) => {
         callback(data);
       })
