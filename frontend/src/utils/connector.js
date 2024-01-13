@@ -21,6 +21,11 @@ const connector = {
       }),
     });
   },
+  deleteEntry: (callback, id, type) => {
+    fetch(`${import.meta.env.VITE_API_URL}/api/wordbank/${type}/${id}`, {
+      method: "delete",
+    });
+  },
 };
 
 export default connector;
