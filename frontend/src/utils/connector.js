@@ -40,15 +40,17 @@ const connector = {
         callback(err);
       });
   },
-  postWord: (callback, name, langId) => {
+  postWord: (callback, name1, langId1, name2, langId2) => {
     fetch(`${import.meta.env.VITE_API_URL}/api/wordbank/word`, {
       method: "POST",
       headers: {
         "Content-type": "application/json; charset=UTF-8",
       },
       body: JSON.stringify({
-        name,
-        langId,
+        name1,
+        langId1,
+        name2,
+        langId2,
       }),
     })
       .then((res) => res.json())
