@@ -41,6 +41,21 @@ export default function PrepTest() {
     callback(fullList);
   };
 
+  const addObject = () => {
+    return (
+      <UpdateContext.Provider value={value}>
+        <DisplayObject
+          word1={"New word"}
+          word2={"Translation"}
+          wordId1={-1}
+          wordId2={-1}
+          langId1={1} //Change when language support added
+          langId2={2} //Change when language support added
+        />
+      </UpdateContext.Provider>
+    );
+  };
+
   useEffect(() => {
     const dataFetch = () => {
       setUpdateState(false);
@@ -60,13 +75,13 @@ export default function PrepTest() {
 
   return (
     <div>
-      <div>{displayState}</div>
-      <button> Add new word </button>
       <button>
         <Link to={"begin"} state={{ prompts: promptList }}>
           {"Begin"}
         </Link>
       </button>
+      <div>{displayState}</div>
+      <div>{addObject()}</div>
     </div>
   );
 }
