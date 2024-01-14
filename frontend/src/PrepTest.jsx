@@ -4,8 +4,9 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 export default function PrepTest() {
-  const [displayState, setDisplayState] = useState("...");
+  const [displayState, setDisplayState] = useState("Loading...");
   const [promptList, setPromptList] = useState([]);
+  const [updateState, setUpdateState] = useState(false);
 
   /**
    * A function for parsing object lists into text lists
@@ -38,6 +39,7 @@ export default function PrepTest() {
 
   useEffect(() => {
     const dataFetch = () => {
+      setUpdateState(false);
       try {
         connector.fetchInfo((res) => {
           setPromptList(res);
@@ -50,11 +52,12 @@ export default function PrepTest() {
       }
     };
     dataFetch();
-  }, []);
+  }, [updateState]);
 
   return (
     <div>
       <div>{displayState}</div>
+      <button> Add new word </button>
       <button>
         <Link to={"begin"} state={{ prompts: promptList }}>
           {"Begin"}
