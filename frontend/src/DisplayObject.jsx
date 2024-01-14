@@ -64,23 +64,42 @@ export default function DisplayObject(props) {
 
   const toSave = (save) => {
     if (save) {
-      if (props.wordId1 == -1 || props.wordId2 == -1) {
+      console.log(props.wordId1);
+      if (props.wordId1 == -1) {
+        console.log("post");
         connector.postWord(
-          {},
+          (e) => {
+            console.log(e);
+          },
           newPrompt,
           props.langId1,
           newAnswer,
           props.langId2
         );
         setUpdateState(true);
-      }
-      if (prompt !== newPrompt) {
-        connector.putEntry({}, props.wordId1, newPrompt, "word");
-        setPrompt(newPrompt);
-      }
-      if (answer !== newAnswer) {
-        connector.putEntry({}, props.wordId2, newAnswer, "word");
-        setAnswer(newAnswer);
+      } else {
+        if (prompt !== newPrompt) {
+          connector.putEntry(
+            (e) => {
+              console.log(e);
+            },
+            props.wordId1,
+            newPrompt,
+            "word"
+          );
+          setPrompt(newPrompt);
+        }
+        if (answer !== newAnswer) {
+          connector.putEntry(
+            (e) => {
+              console.log(e);
+            },
+            props.wordId2,
+            newAnswer,
+            "word"
+          );
+          setAnswer(newAnswer);
+        }
       }
     } else {
       setNewPrompt(prompt);
