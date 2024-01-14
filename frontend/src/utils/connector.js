@@ -28,9 +28,16 @@ const connector = {
         callback(err);
       });
   },
-  deleteEntry: (callback, id, type) => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/wordbank/${type}/${id}`, {
+  deleteEntry: (callback, id1, id2, type) => {
+    fetch(`${import.meta.env.VITE_API_URL}/api/wordbank/${type}`, {
       method: "delete",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+      body: JSON.stringify({
+        id1,
+        id2,
+      }),
     })
       .then((res) => res.json())
       .then((data) => {

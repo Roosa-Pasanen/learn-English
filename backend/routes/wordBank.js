@@ -36,9 +36,10 @@ router.put("/word/:id([0-9]+)", async (req, res) => {
   }
 });
 
-router.delete("/word/:id([0-9]+)", async (req, res) => {
+router.delete("/word", async (req, res) => {
   try {
-    const q = `DELETE from word WHERE id = ${req.params.id};`;
+    const q = `DELETE from wordPair WHERE pairId1 = ${req.body.id1} AND
+    pairId2 = ${req.body.id2};`;
     await connect.contact(q);
     res.send("Success!");
   } catch (error) {
@@ -55,7 +56,7 @@ router.post("/word", async (req, res) => {
     const q2 = `INSERT INTO word (name, langId)
     VALUES ("${req.body.name2}", ${req.body.langId2});`;
     const q3 = `INSERT INTO wordPair (pairId1, pairId2, langPairId)
-    VALUES (${req.body.langId1}, ${req.body.langId2},
+    VALUES ((SELECT id FROM word WHERE name = "${req.body.name1}"), (SELECT id FROM word WHERE name = "${req.body.name2}"),
       (SELECT id FROM languagePair WHERE pairID1 = ${req.body.langId1} AND
         pairID2 = ${req.body.langId2}));`;
     await connect.contact(q1);
