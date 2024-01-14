@@ -2,11 +2,13 @@ import connector from "./utils/connector.js";
 import DisplayObject from "./DisplayObject.jsx";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import UpdateContext from "./UpdateContext.jsx";
 
 export default function PrepTest() {
   const [displayState, setDisplayState] = useState("Loading...");
   const [promptList, setPromptList] = useState([]);
   const [updateState, setUpdateState] = useState(false);
+  const value = { updateState, setUpdateState };
 
   /**
    * A function for parsing object lists into text lists
@@ -22,15 +24,17 @@ export default function PrepTest() {
     let fullList = [];
     for (let i = 0; i < l.length; i++) {
       const temp = (
-        <DisplayObject
-          key={i}
-          word1={l[i].word1}
-          word2={l[i].word2}
-          wordId1={l[i].wordId1}
-          wordId2={l[i].wordId2}
-          langId1={l[i].langId1}
-          langId2={l[i].langId2}
-        />
+        <UpdateContext.Provider value={value}>
+          <DisplayObject
+            key={i}
+            word1={l[i].word1}
+            word2={l[i].word2}
+            wordId1={l[i].wordId1}
+            wordId2={l[i].wordId2}
+            langId1={l[i].langId1}
+            langId2={l[i].langId2}
+          />
+        </UpdateContext.Provider>
       );
       fullList.push(temp);
     }
