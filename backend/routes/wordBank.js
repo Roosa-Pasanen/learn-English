@@ -51,16 +51,16 @@ router.post("/word", async (req, res) => {
   try {
     // Name, languageid
     const q1 = `INSERT INTO word (name, langId)
-    VALUES (${req.body.name1}, ${req.body.langId1});`;
+    VALUES ("${req.body.name1}", ${req.body.langId1});`;
     const q2 = `INSERT INTO word (name, langId)
-    VALUES (${req.body.name2}, ${req.body.langId2});`;
+    VALUES ("${req.body.name2}", ${req.body.langId2});`;
     const q3 = `INSERT INTO wordPair (pairId1, pairId2, langPairId)
     VALUES (${req.body.langId1}, ${req.body.langId2},
       (SELECT id FROM languagePair WHERE pairID1 = ${req.body.langId1} AND
         pairID2 = ${req.body.langId2}));`;
     await connect.contact(q1);
     await connect.contact(q2);
-    await connect.connect(q3);
+    await connect.contact(q3);
     res.send("Success!");
   } catch (error) {
     console.log(error);
