@@ -10,7 +10,10 @@ export default function DisplayObject(props) {
   const [newAnswer, setNewAnswer] = useState(props.word2);
   const { setUpdateState } = useContext(UpdateContext);
 
-  useEffect(() => {}, [props.word1, props.word2]);
+  useEffect(() => {
+    setPrompt(props.word1);
+    setAnswer(props.word2);
+  }, [props.word1, props.word2]);
 
   const editing = () => {
     return (
@@ -41,6 +44,14 @@ export default function DisplayObject(props) {
             }}
           >
             Save
+          </button>
+          <button
+            onClick={() => {
+              setEditable(false);
+              deleteObject();
+            }}
+          >
+            Delete
           </button>
         </div>
       </div>
@@ -104,6 +115,17 @@ export default function DisplayObject(props) {
       setNewPrompt(prompt);
       setNewAnswer(answer);
     }
+  };
+
+  const deleteObject = () => {
+    connector.deleteEntry(
+      () => {
+        setUpdateState(true);
+      },
+      props.wordId1,
+      props.wordId2,
+      "word"
+    );
   };
 
   const isEditable = () => {
