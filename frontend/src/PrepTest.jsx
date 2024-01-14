@@ -71,7 +71,7 @@ export default function PrepTest() {
       }
     };
     dataFetch();
-  }, [updateState]);
+  }, [updateState, setUpdateState]);
 
   return (
     <div>

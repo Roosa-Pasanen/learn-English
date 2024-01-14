@@ -68,15 +68,14 @@ export default function DisplayObject(props) {
       if (props.wordId1 == -1) {
         console.log("post");
         connector.postWord(
-          (e) => {
-            console.log(e);
+          () => {
+            setUpdateState(true);
           },
           newPrompt,
           props.langId1,
           newAnswer,
           props.langId2
         );
-        setUpdateState(true);
       } else {
         if (prompt !== newPrompt) {
           connector.putEntry(
