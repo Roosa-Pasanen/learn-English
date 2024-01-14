@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import connector from "./utils/connector.js";
+import UpdateContext from "./UpdateContext.jsx";
 
 export default function DisplayObject(props) {
   const [prompt, setPrompt] = useState(props.word1);
@@ -7,6 +8,7 @@ export default function DisplayObject(props) {
   const [editable, setEditable] = useState(false);
   const [newPrompt, setNewPrompt] = useState(props.word1);
   const [newAnswer, setNewAnswer] = useState(props.word2);
+  const { setUpdateState } = useContext(UpdateContext);
 
   useEffect(() => {}, [props.word1, props.word2]);
 
@@ -70,6 +72,7 @@ export default function DisplayObject(props) {
           newAnswer,
           props.langId2
         );
+        setUpdateState(true);
       }
       if (prompt !== newPrompt) {
         connector.putEntry({}, props.wordId1, newPrompt, "word");
