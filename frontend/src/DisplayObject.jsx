@@ -5,10 +5,11 @@ import UpdateContext from "./UpdateContext.jsx";
 export default function DisplayObject(props) {
   const [prompt, setPrompt] = useState(props.word1);
   const [answer, setAnswer] = useState(props.word2);
-  const [editable, setEditable] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
   const [newPrompt, setNewPrompt] = useState(props.word1);
   const [newAnswer, setNewAnswer] = useState(props.word2);
   const { setUpdateState } = useContext(UpdateContext);
+  const { editable } = useState(props.editable);
 
   useEffect(() => {
     setPrompt(props.word1);
@@ -31,7 +32,7 @@ export default function DisplayObject(props) {
         <div>
           <button
             onClick={() => {
-              setEditable(false);
+              setIsEditing(false);
               toSave(false);
             }}
           >
@@ -39,7 +40,7 @@ export default function DisplayObject(props) {
           </button>
           <button
             onClick={() => {
-              setEditable(false);
+              setIsEditing(false);
               toSave(true);
             }}
           >
@@ -47,7 +48,7 @@ export default function DisplayObject(props) {
           </button>
           <button
             onClick={() => {
-              setEditable(false);
+              setIsEditing(false);
               deleteObject();
             }}
           >
@@ -59,18 +60,26 @@ export default function DisplayObject(props) {
   };
 
   const display = () => {
-    return (
-      <div>
-        {prompt} - {answer}
-        <button
-          onClick={() => {
-            setEditable(true);
-          }}
-        >
-          Edit
-        </button>
-      </div>
-    );
+    if (editable) {
+      return (
+        <div>
+          {prompt} - {answer}
+          <button
+            onClick={() => {
+              setIsEditing(true);
+            }}
+          >
+            Edit
+          </button>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          {prompt} - {answer}
+        </div>
+      );
+    }
   };
 
   const toSave = (save) => {
@@ -129,7 +138,7 @@ export default function DisplayObject(props) {
   };
 
   const isEditable = () => {
-    if (!editable) {
+    if (!isEditing) {
       return display();
     } else {
       return editing();
