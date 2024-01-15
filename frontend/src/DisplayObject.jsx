@@ -9,12 +9,13 @@ export default function DisplayObject(props) {
   const [newPrompt, setNewPrompt] = useState(props.word1);
   const [newAnswer, setNewAnswer] = useState(props.word2);
   const { setUpdateState } = useContext(UpdateContext);
-  const { editable } = useState(props.editable);
+  const [editable, setEditable] = useState(props.editable);
 
   useEffect(() => {
     setPrompt(props.word1);
     setAnswer(props.word2);
-  }, [props.word1, props.word2]);
+    setEditable(props.editable);
+  }, [props.word1, props.word2, props.editable]);
 
   const editing = () => {
     return (
