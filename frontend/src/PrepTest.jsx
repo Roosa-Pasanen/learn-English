@@ -10,7 +10,7 @@ export default function PrepTest() {
   const [promptList, setPromptList] = useState([]);
   const [updateState, setUpdateState] = useState(false);
   const value = { updateState, setUpdateState };
-  const [adminState] = useContext(GlobalContext);
+  const { adminState } = useContext(GlobalContext);
 
   /**
    * A function for parsing object lists into text lists
@@ -53,6 +53,7 @@ export default function PrepTest() {
           wordId2={-1}
           langId1={1} //Change when language support added
           langId2={2} //Change when language support added
+          editable={adminState}
         />
       </UpdateContext.Provider>
     );
@@ -73,7 +74,7 @@ export default function PrepTest() {
       }
     };
     dataFetch();
-  }, [updateState, setUpdateState]);
+  }, [updateState, setUpdateState, adminState]);
 
   return (
     <div>
