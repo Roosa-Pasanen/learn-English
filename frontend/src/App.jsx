@@ -11,7 +11,13 @@ function App() {
 
   return (
     <>
-      <button onClick={() => setAdminState(true)}> Admin </button>
+      <button
+        onClick={() => {
+          adminState ? setAdminState(false) : setAdminState(true);
+        }}
+      >
+        Admin
+      </button>
       <GlobalContext.Provider value={admin}>
         <BrowserRouter>
           <Routes>
