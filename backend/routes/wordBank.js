@@ -51,17 +51,29 @@ router.delete("/word", async (req, res) => {
 router.post("/word", async (req, res) => {
   try {
     // Name, languageid
-    const q1 = `INSERT INTO word (name, langId)
-    VALUES ("${req.body.name1}", ${req.body.langId1});`;
-    const q2 = `INSERT INTO word (name, langId)
-    VALUES ("${req.body.name2}", ${req.body.langId2});`;
+    const q1Search = `SELECT id from word
+    WHERE name = "${req.body.name1}" AND langId = ${req.body.langId1};`;
+    const q2Search = `SELECT id from word
+    WHERE name = "${req.body.name2}" AND langId = ${req.body.langId2};`;
+    let id1 = await connect.contact(q1Search);
+    let id2 = await connect.contact(q2Search);
+    if (id1[0] == undefined) {
+      const insert = `INSERT INTO word (name, langId)
+      VALUES ("${req.body.name1}", ${req.body.langId1});`;
+      await connect.contact(insert);
+      id1 = await connect.contact(q1Search);
+    }
+    if (id2[0] == undefined) {
+      const insert = `INSERT INTO word (name, langId)
+      VALUES ("${req.body.name2}", ${req.body.langId2});`;
+      await connect.contact(insert);
+      id2 = await connect.contact(q2Search);
+    }
     const q3 = `INSERT INTO wordPair (pairId1, pairId2, langPairId)
-    VALUES ((SELECT id FROM word WHERE name = "${req.body.name1}"), (SELECT id FROM word WHERE name = "${req.body.name2}"),
-      (SELECT id FROM languagePair WHERE pairID1 = ${req.body.langId1} AND
-        pairID2 = ${req.body.langId2}));`;
-    await connect.contact(q1);
-    await connect.contact(q2);
+      VALUES (${id1[0].id}, ${id2[0].id}, (SELECT id FROM languagePair
+      WHERE pairID1 = ${req.body.langId1} AND pairID2 = ${req.body.langId2}));`;
     await connect.contact(q3);
+
     res.send("Success!");
   } catch (error) {
     console.log(error);
