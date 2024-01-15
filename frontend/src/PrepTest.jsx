@@ -24,9 +24,8 @@ export default function PrepTest() {
     let fullList = [];
     for (let i = 0; i < l.length; i++) {
       const temp = (
-        <UpdateContext.Provider value={value}>
+        <UpdateContext.Provider value={value} key={i}>
           <DisplayObject
-            key={i}
             word1={l[i].word1}
             word2={l[i].word2}
             wordId1={l[i].wordId1}
