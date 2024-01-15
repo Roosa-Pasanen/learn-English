@@ -1,14 +1,16 @@
 import connector from "./utils/connector.js";
 import DisplayObject from "./DisplayObject.jsx";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import UpdateContext from "./UpdateContext.jsx";
+import GlobalContext from "./GlobalContext.jsx";
 
 export default function PrepTest() {
   const [displayState, setDisplayState] = useState("Loading...");
   const [promptList, setPromptList] = useState([]);
   const [updateState, setUpdateState] = useState(false);
   const value = { updateState, setUpdateState };
+  const [adminState] = useContext(GlobalContext);
 
   /**
    * A function for parsing object lists into text lists
@@ -32,6 +34,7 @@ export default function PrepTest() {
             wordId2={l[i].wordId2}
             langId1={l[i].langId1}
             langId2={l[i].langId2}
+            editable={adminState}
           />
         </UpdateContext.Provider>
       );
