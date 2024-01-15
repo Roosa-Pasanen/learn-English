@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import PrepTest from "./PrepTest";
 import WriteTest from "./WriteTest";
+import GlobalContext from "./GlobalContext.jsx";
 
 function App() {
   return (
