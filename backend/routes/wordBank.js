@@ -9,14 +9,13 @@ router.get("/", async (req, res) => {
       .selectAll(1)
       .then((data) => {
         if (data.length !== 0) {
-          res.status(200);
-          res.send(data);
+          res.status(200).send(data);
         } else {
-          res.status(404);
+          res.status(404).send();
         }
       })
       .catch((err) => {
-        res.status(500);
+        res.status(500).send();
         res.json(err);
       });
   } catch (err) {
@@ -29,10 +28,10 @@ router.put("/word/:id([0-9]+)", async (req, res) => {
     connect
       .updateWord(req.params.id, req.body.name)
       .then(() => {
-        res.status(204);
+        res.status(204).send();
       })
       .catch((err) => {
-        res.status(500);
+        res.status(500).send();
         res.json(err);
       });
   } catch (error) {
@@ -45,10 +44,10 @@ router.delete("/word", async (req, res) => {
     connect
       .deleteWord(req.body.id1, req.body.id2)
       .then(() => {
-        res.status(204);
+        res.status(204).send();
       })
       .catch((err) => {
-        res.status(500);
+        res.status(500).send();
         res.json(err);
       });
   } catch (error) {
@@ -67,11 +66,10 @@ router.post("/word", async (req, res) => {
         req.body.name2
       )
       .then(() => {
-        console.log("läpi");
-        res.status(201);
+        res.status(201).send();
       })
       .catch((err) => {
-        res.status(500);
+        res.status(500).send();
         res.json(err);
         console.log(err);
       });
