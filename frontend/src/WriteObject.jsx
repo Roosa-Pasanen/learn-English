@@ -38,7 +38,6 @@ export default function WriteObject(props) {
   };
 
   const toCheck = () => {
-    console.log(check);
     if (!check) {
       return test();
     } else {
