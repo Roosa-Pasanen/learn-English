@@ -63,12 +63,14 @@ export default function PrepTest() {
     const dataFetch = () => {
       setUpdateState(false);
       try {
-        connector.fetchInfo((res) => {
-          setPromptList(res);
-          plainList(res, (res) => {
-            setDisplayState(res);
+        setTimeout(() => {
+          connector.fetchInfo((res) => {
+            setPromptList(res);
+            plainList(res, (res) => {
+              setDisplayState(res);
+            });
           });
-        });
+        }, 50);
       } catch (err) {
         console.log(err);
       }
