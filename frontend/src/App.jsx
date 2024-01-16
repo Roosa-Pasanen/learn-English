@@ -11,17 +11,26 @@ function App() {
 
   return (
     <>
-      <button
-        onClick={() => {
-          adminState ? setAdminState(false) : setAdminState(true);
-        }}
-      >
-        Admin
-      </button>
+      <div>
+        <button
+          onClick={() => {
+            adminState ? setAdminState(false) : setAdminState(true);
+          }}
+        >
+          Admin
+        </button>
+      </div>
       <GlobalContext.Provider value={admin}>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={"wip"} />
+            <Route
+              path="/"
+              element={
+                <a href={"/test"}>
+                  <button>To the test</button>
+                </a>
+              }
+            />
             <Route path="/test" element={<PrepTest />} />
             <Route path="/test/begin" element={<WriteTest />} />
           </Routes>
