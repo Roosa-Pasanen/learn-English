@@ -95,6 +95,8 @@ export default function DisplayObject(props) {
           newAnswer,
           props.langId2
         );
+        setPrompt("New word");
+        setAnswer("Translation");
       } else {
         if (prompt !== newPrompt) {
           connector.putEntry(
