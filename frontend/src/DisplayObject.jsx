@@ -85,9 +85,7 @@ export default function DisplayObject(props) {
 
   const toSave = (save) => {
     if (save) {
-      console.log(props.wordId1);
       if (props.wordId1 == -1) {
-        console.log("post");
         connector.postWord(
           () => {
             setUpdateState(true);
