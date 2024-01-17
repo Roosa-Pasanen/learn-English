@@ -23,42 +23,50 @@ export default function DisplayObject(props) {
   const editing = () => {
     return (
       <div>
-        <input
-          type="text"
-          value={newPrompt}
-          onChange={(e) => setNewPrompt(e.target.value)}
-        ></input>
-        <input
-          type="text"
-          value={newAnswer}
-          onChange={(e) => setNewAnswer(e.target.value)}
-        ></input>
-        <div>
-          <button
-            onClick={() => {
-              setIsEditing(false);
-              toSave(false);
-            }}
-          >
-            Cancel
-          </button>
-          <button
-            onClick={() => {
-              setIsEditing(false);
-              toSave(true);
-            }}
-          >
-            Save
-          </button>
-          <button
-            onClick={() => {
-              setIsEditing(false);
-              deleteObject();
-            }}
-          >
-            Delete
-          </button>
-        </div>
+        <Card style={{ margin: "10px" }}>
+          <Card.Body className="align-items-center">
+            <div className="d-flex justify-content-between">
+              <input
+                className="mx-1"
+                type="text"
+                value={newPrompt}
+                onChange={(e) => setNewPrompt(e.target.value)}
+              ></input>
+              <input
+                className="mx-1"
+                type="text"
+                value={newAnswer}
+                onChange={(e) => setNewAnswer(e.target.value)}
+              ></input>
+            </div>
+            <div className="mt-2">
+              <button
+                onClick={() => {
+                  setIsEditing(false);
+                  toSave(false);
+                }}
+              >
+                Cancel
+              </button>
+              <button
+                onClick={() => {
+                  setIsEditing(false);
+                  toSave(true);
+                }}
+              >
+                Save
+              </button>
+              <button
+                onClick={() => {
+                  setIsEditing(false);
+                  deleteObject();
+                }}
+              >
+                Delete
+              </button>
+            </div>
+          </Card.Body>
+        </Card>
       </div>
     );
   };
