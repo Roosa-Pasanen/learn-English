@@ -1,6 +1,9 @@
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import WriteObject from "./WriteObject.jsx";
+import "bootstrap/dist/css/bootstrap.min.css";
+
+import { Button } from "react-bootstrap";
 
 export default function WriteTest() {
   const location = useLocation();
@@ -26,15 +29,17 @@ export default function WriteTest() {
   };
 
   return (
-    <div>
+    <div className="m-3">
       <div>{createList()}</div>
-      <button
+      <Button
+        variant="success"
+        size="lg"
         onClick={() => {
           setCheckState(true);
         }}
       >
         Submit
-      </button>
+      </Button>
     </div>
   );
 }
