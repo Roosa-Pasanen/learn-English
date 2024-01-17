@@ -1,6 +1,9 @@
 import { useState, useEffect, useContext } from "react";
 import connector from "./utils/connector.js";
 import UpdateContext from "./UpdateContext.jsx";
+import "bootstrap/dist/css/bootstrap.min.css";
+
+import { Button, Card } from "react-bootstrap";
 
 export default function DisplayObject(props) {
   const [prompt, setPrompt] = useState(props.word1);
@@ -64,20 +67,33 @@ export default function DisplayObject(props) {
     if (editable) {
       return (
         <div>
-          {prompt} - {answer}
-          <button
-            onClick={() => {
-              setIsEditing(true);
-            }}
-          >
-            Edit
-          </button>
+          <Card style={{ margin: "10px" }}>
+            <Card.Body className="d-flex justify-content-around align-items-center">
+              <div>
+                {prompt} - {answer}
+              </div>
+              <Button
+                variant="light"
+                onClick={() => {
+                  setIsEditing(true);
+                }}
+              >
+                Edit
+              </Button>
+            </Card.Body>
+          </Card>
         </div>
       );
     } else {
       return (
         <div>
-          {prompt} - {answer}
+          <Card style={{ margin: "10px" }}>
+            <Card.Body className="mb-2">
+              <Card.Text style={{ fontSizeAdjust: "0.6" }}>
+                {prompt} - {answer}
+              </Card.Text>
+            </Card.Body>
+          </Card>
         </div>
       );
     }
