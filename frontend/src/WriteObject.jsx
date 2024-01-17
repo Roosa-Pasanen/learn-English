@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import { Card } from "react-bootstrap";
+import { Card, Container, Row, Col } from "react-bootstrap";
 
 export default function WriteObject(props) {
   const [prompt] = useState(props.word1);
@@ -30,23 +30,32 @@ export default function WriteObject(props) {
       return (
         <Card className="m-2">
           <Card.Body>
-            <div className="d-flex justify-content-around align-items-center">
-              <div>{prompt}</div>
-              <div> {answer} </div>
-              <p>Correct!</p>
-            </div>
+            <Container>
+              <Row className="align-items-center">
+                <Col>{prompt}</Col>
+                <Col>{answer}</Col>
+                <Col className="text-bg-success rounded">
+                  <div>Correct!</div>
+                </Col>
+              </Row>
+            </Container>
           </Card.Body>
         </Card>
       );
     } else {
       return (
         <Card className="m-2">
-          <Card.Body className="d-flex justify-content-around align-items-center">
-            <div className="d-flex justify-content-around align-items-center">
-              <div>{prompt}</div>
-              <div> {answer} </div>
-              <p>Correct answer: {cAnswer}</p>
-            </div>
+          <Card.Body>
+            <Container>
+              <Row className="align-items-center">
+                <Col>{prompt}</Col>
+                <Col>{answer}</Col>
+                <Col className="text-bg-danger rounded">
+                  <div>Answer:</div>
+                  <div>{cAnswer}</div>
+                </Col>
+              </Row>
+            </Container>
           </Card.Body>
         </Card>
       );
