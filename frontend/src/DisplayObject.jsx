@@ -90,15 +90,13 @@ export default function DisplayObject(props) {
       );
     } else {
       return (
-        <div>
-          <Card style={{ margin: "10px" }}>
-            <Card.Body className="mb-2">
-              <Card.Text style={{ fontSizeAdjust: "0.6" }}>
-                {prompt} - {answer}
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </div>
+        <Card className="m-2">
+          <Card.Body className="mb-2">
+            <Card.Text style={{ fontSizeAdjust: "0.6" }}>
+              {prompt} - {answer}
+            </Card.Text>
+          </Card.Body>
+        </Card>
       );
     }
   };
