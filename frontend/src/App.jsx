@@ -4,6 +4,8 @@ import "./App.css";
 import PrepTest from "./PrepTest";
 import WriteTest from "./WriteTest";
 import GlobalContext from "./GlobalContext.jsx";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Button } from "react-bootstrap";
 
 function App() {
   const [adminState, setAdminState] = useState(false);
@@ -12,27 +14,20 @@ function App() {
   return (
     <>
       <div>
-        <button
+        <Button
+          variant="light"
           onClick={() => {
             adminState ? setAdminState(false) : setAdminState(true);
           }}
         >
           Admin
-        </button>
+        </Button>
       </div>
       <GlobalContext.Provider value={admin}>
         <BrowserRouter>
           <Routes>
-            <Route
-              path="/"
-              element={
-                <a href={"/test"}>
-                  <button>To the test</button>
-                </a>
-              }
-            />
-            <Route path="/test" element={<PrepTest />} />
-            <Route path="/test/begin" element={<WriteTest />} />
+            <Route path="/" element={<PrepTest />} />
+            <Route path="/begin" element={<WriteTest />} />
           </Routes>
         </BrowserRouter>
       </GlobalContext.Provider>
