@@ -4,6 +4,9 @@ import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import UpdateContext from "./UpdateContext.jsx";
 import GlobalContext from "./GlobalContext.jsx";
+import "bootstrap/dist/css/bootstrap.min.css";
+
+import { Button } from "react-bootstrap";
 
 export default function PrepTest() {
   const [displayState, setDisplayState] = useState("Loading...");
@@ -44,19 +47,21 @@ export default function PrepTest() {
   };
 
   const addObject = () => {
-    return (
-      <UpdateContext.Provider value={value}>
-        <DisplayObject
-          word1={"New word"}
-          word2={"Translation"}
-          wordId1={-1}
-          wordId2={-1}
-          langId1={1} //Change when language support added
-          langId2={2} //Change when language support added
-          editable={adminState}
-        />
-      </UpdateContext.Provider>
-    );
+    if (adminState) {
+      return (
+        <UpdateContext.Provider value={value}>
+          <DisplayObject
+            word1={"New word"}
+            word2={"Translation"}
+            wordId1={-1}
+            wordId2={-1}
+            langId1={1} //Change when language support added
+            langId2={2} //Change when language support added
+            editable={adminState}
+          />
+        </UpdateContext.Provider>
+      );
+    }
   };
 
   useEffect(() => {
@@ -79,12 +84,16 @@ export default function PrepTest() {
   }, [updateState, setUpdateState, adminState]);
 
   return (
-    <div>
-      <button>
-        <Link to={"begin"} state={{ prompts: promptList }}>
-          {"Begin"}
+    <div className="m-3">
+      <Button variant="info" size="lg">
+        <Link
+          className="link-dark"
+          to={"begin"}
+          state={{ prompts: promptList }}
+        >
+          {"Begin Test!"}
         </Link>
-      </button>
+      </Button>
       <div>{displayState}</div>
       <div>{addObject()}</div>
     </div>
