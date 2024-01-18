@@ -1,6 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import WriteObject from "./WriteObject.jsx";
+import ScoreContext from "./ScoreContext.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import { Button } from "react-bootstrap";
@@ -8,6 +9,8 @@ import { Button } from "react-bootstrap";
 export default function WriteTest() {
   const location = useLocation();
   const [checkState, setCheckState] = useState(false);
+  const [scoreState, setScoreState] = useState(0);
+  const correct = { scoreState, setScoreState };
 
   const createList = () => {
     const promptList = location.state.prompts;
@@ -17,12 +20,13 @@ export default function WriteTest() {
     let questionList = [];
     for (let i = 0; i < promptList.length; i++) {
       questionList.push(
-        <WriteObject
-          key={i}
-          word1={promptList[i].word1}
-          word2={promptList[i].word2}
-          check={checkState}
-        />
+        <ScoreContext.Provider key={i} value={correct}>
+          <WriteObject
+            word1={promptList[i].word1}
+            word2={promptList[i].word2}
+            check={checkState}
+          />
+        </ScoreContext.Provider>
       );
     }
     return <div>{questionList}</div>;
