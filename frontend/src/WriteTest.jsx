@@ -16,17 +16,31 @@ export default function WriteTest() {
     if (checkState) {
       return (
         <div>
-          Your scored {scoreState}/{location.state.prompts.length}
+          Your scored {scoreState}/{location.state.prompts.length - 1}!
         </div>
       );
     }
   };
 
+  const toRandomize = (list) => {
+    let randomized = new Array(list.length - 1);
+    for (let i = 0; i < list.length; i++) {
+      const index = Math.floor(Math.random * list.length);
+      if (list[index] == undefined) {
+        randomized.push(list[index]);
+      } else {
+        i--;
+      }
+    }
+    return randomized;
+  };
+
   const createList = () => {
-    const promptList = location.state.prompts;
+    let promptList = location.state.prompts;
     if (promptList.length == 0 || promptList == undefined) {
       return <div>Error: No content</div>;
     }
+    promptList = toRandomize(promptList);
     let questionList = [];
     for (let i = 0; i < promptList.length; i++) {
       questionList.push(
