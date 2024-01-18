@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import ScoreContext from "./ScoreContext";
 
 import { Card, Container, Row, Col } from "react-bootstrap";
 
@@ -8,6 +9,7 @@ export default function WriteObject(props) {
   const [cAnswer] = useState(props.word2);
   const [answer, setAnswer] = useState("");
   const [check, setCheck] = useState(props.check);
+  const { scoreState, setScoreState } = useContext(ScoreContext);
 
   useEffect(() => setCheck(props.check), [props.check]);
 
@@ -27,6 +29,8 @@ export default function WriteObject(props) {
 
   const grading = () => {
     if (answer == cAnswer) {
+      const newScore = scoreState + 1;
+      setScoreState(newScore);
       return (
         <Card className="m-2">
           <Card.Body>
