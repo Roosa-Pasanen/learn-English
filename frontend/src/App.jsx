@@ -4,8 +4,8 @@ import "./App.css";
 import PrepTest from "./PrepTest";
 import WriteTest from "./WriteTest";
 import GlobalContext from "./GlobalContext.jsx";
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import { Button } from "../node_modules/react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Button } from "react-bootstrap";
 
 function App() {
   const [adminState, setAdminState] = useState(false);
@@ -13,7 +13,10 @@ function App() {
 
   return (
     <>
-      <div>
+      <header
+        className="d-flex justify-content-end"
+        style={{ backgroundColor: "aliceblue", width: "100%", height: "10vh" }}
+      >
         <Button
           variant="light"
           onClick={() => {
@@ -22,7 +25,7 @@ function App() {
         >
           Admin
         </Button>
-      </div>
+      </header>
       <GlobalContext.Provider value={admin}>
         <Router>
           <Routes>
