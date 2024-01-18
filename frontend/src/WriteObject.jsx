@@ -9,9 +9,27 @@ export default function WriteObject(props) {
   const [cAnswer] = useState(props.word2);
   const [answer, setAnswer] = useState("");
   const [check, setCheck] = useState(props.check);
+  const [hasBeenGraded, setHasBeenGraded] = useState(false);
   const { scoreState, setScoreState } = useContext(ScoreContext);
 
   useEffect(() => setCheck(props.check), [props.check]);
+
+  useEffect(() => {
+    if (answer == cAnswer && !hasBeenGraded) {
+      setHasBeenGraded(true);
+      console.log("+");
+      let newScore = scoreState + 1;
+      setScoreState(newScore);
+      console.log(newScore);
+    }
+    if (answer !== cAnswer && hasBeenGraded) {
+      setHasBeenGraded(false);
+      console.log("-");
+      let newScore = scoreState - 1;
+      setScoreState(newScore);
+      console.log(newScore);
+    }
+  }, [answer]);
 
   const test = () => {
     return (
@@ -29,8 +47,6 @@ export default function WriteObject(props) {
 
   const grading = () => {
     if (answer == cAnswer) {
-      const newScore = scoreState + 1;
-      setScoreState(newScore);
       return (
         <Card className="m-2">
           <Card.Body>
