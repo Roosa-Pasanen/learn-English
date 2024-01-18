@@ -4,9 +4,9 @@ import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import UpdateContext from "./UpdateContext.jsx";
 import GlobalContext from "./GlobalContext.jsx";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
-import { Button } from "react-bootstrap";
+import { Button } from "../node_modules/react-bootstrap";
 
 export default function PrepTest() {
   const [displayState, setDisplayState] = useState("Loading...");

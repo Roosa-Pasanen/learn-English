@@ -4,8 +4,8 @@ import "./App.css";
 import PrepTest from "./PrepTest";
 import WriteTest from "./WriteTest";
 import GlobalContext from "./GlobalContext.jsx";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { Button } from "react-bootstrap";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import { Button } from "../node_modules/react-bootstrap";
 
 function App() {
   const [adminState, setAdminState] = useState(false);
