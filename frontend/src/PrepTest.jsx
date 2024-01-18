@@ -4,6 +4,7 @@ import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import UpdateContext from "./UpdateContext.jsx";
 import GlobalContext from "./GlobalContext.jsx";
+import ScoreContext from "./ScoreContext.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import { Button } from "react-bootstrap";
@@ -14,6 +15,7 @@ export default function PrepTest() {
   const [updateState, setUpdateState] = useState(false);
   const value = { updateState, setUpdateState };
   const { adminState } = useContext(GlobalContext);
+  const { setScoreState } = useContext(ScoreContext);
 
   /**
    * A function for parsing object lists into text lists
@@ -85,7 +87,13 @@ export default function PrepTest() {
 
   return (
     <div className="m-3">
-      <Button variant="info" size="lg">
+      <Button
+        variant="info"
+        size="lg"
+        onClick={() => {
+          setScoreState(0);
+        }}
+      >
         <Link
           className="link-dark"
           to={"begin"}
