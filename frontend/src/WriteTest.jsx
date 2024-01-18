@@ -12,6 +12,16 @@ export default function WriteTest() {
   const [scoreState, setScoreState] = useState(0);
   const correct = { scoreState, setScoreState };
 
+  const grading = () => {
+    if (checkState) {
+      return (
+        <div>
+          Your scored {scoreState}/{location.state.prompts.length}
+        </div>
+      );
+    }
+  };
+
   const createList = () => {
     const promptList = location.state.prompts;
     if (promptList.length == 0 || promptList == undefined) {
@@ -44,6 +54,7 @@ export default function WriteTest() {
       >
         Submit
       </Button>
+      <div>{grading()}</div>
     </div>
   );
 }
