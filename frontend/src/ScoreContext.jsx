@@ -1,7 +1,7 @@
 import React from "react";
 
 const ScoreContext = React.createContext({
-  scoreState: false,
+  scoreState: [],
   setScoreState: () => {},
 });
 
