@@ -4,11 +4,13 @@ import "./App.css";
 import PrepTest from "./PrepTest";
 import WriteTest from "./WriteTest";
 import GlobalContext from "./GlobalContext.jsx";
+import ScoreContext from "./ScoreContext.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button } from "react-bootstrap";
 
 function App() {
   const [adminState, setAdminState] = useState(false);
+  const [scoreState, setScoreState] = useState(0);
   const admin = { adminState };
 
   return (
@@ -27,12 +29,14 @@ function App() {
         </Button>
       </header>
       <GlobalContext.Provider value={admin}>
-        <Router>
-          <Routes>
-            <Route path="/" element={<PrepTest />} />
-            <Route path="/begin" element={<WriteTest />} />
-          </Routes>
-        </Router>
+        <ScoreContext.Provider value={{ scoreState, setScoreState }}>
+          <Router>
+            <Routes>
+              <Route path="/" element={<PrepTest />} />
+              <Route path="/begin" element={<WriteTest />} />
+            </Routes>
+          </Router>
+        </ScoreContext.Provider>
       </GlobalContext.Provider>
     </>
   );
