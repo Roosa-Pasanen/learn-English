@@ -2,12 +2,15 @@
   "name": "learn-english",
   "version": "1.0.0",
   "description": "learn-English",
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node backend/backend.js",
-    "build:frontend": "cd frontend && npm run build",
-    "dev:frontend": "cd frontend && npm run dev",
-    "dev:backend": "nodemon backend/backend.js"
+    "start": "concurrently \"npm run start-frontend\" \"npm run start-backend\"",
+    "start-frontend": "npm run dev --workspace=frontend",
+    "start-backend": "cd backend && node backend.js --workspace=backend"
   },
   "repository": {
     "type": "git",
@@ -20,7 +23,8 @@
   },
   "homepage": "https://github.com/Roosa-Pasanen/learn-English#readme",
   "devDependencies": {
-    "eslint": "^8.56.0"
+    "concurrently": "^8.2.2",
+    "eslint": "^8.55.0"
   },
   "dependencies": {
     "bootstrap": "^5.3.2",
