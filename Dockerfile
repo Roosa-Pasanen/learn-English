@@ -17,6 +17,8 @@ RUN npm install
 # node_modules excluded (.dockerignore)
 COPY frontend .
 
+RUN npm run build
+
 ## STAGE 2
 
 # Start a new build stage with the same lightweight Node.js image
