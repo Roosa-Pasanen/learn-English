@@ -11,7 +11,7 @@
     "build:frontend": "cd frontend && npm run build",
     "start": "npm run start-backend",
     "start-frontend": "npm run dev --workspace=frontend",
-    "start-backend": "cd backend && node backend.js --workspace=backend"
+    "start-backend": "npm start --workspace=backend"
   },
   "repository": {
     "type": "git",
