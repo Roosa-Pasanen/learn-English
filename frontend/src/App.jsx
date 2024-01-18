@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import { useState } from "react";
 import "./App.css";
 import PrepTest from "./PrepTest";
@@ -24,12 +24,12 @@ function App() {
         </Button>
       </div>
       <GlobalContext.Provider value={admin}>
-        <BrowserRouter>
+        <Router>
           <Routes>
             <Route path="/" element={<PrepTest />} />
             <Route path="/begin" element={<WriteTest />} />
           </Routes>
-        </BrowserRouter>
+        </Router>
       </GlobalContext.Provider>
     </>
   );
