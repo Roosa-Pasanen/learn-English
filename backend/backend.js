@@ -26,7 +26,7 @@ connect((err) => {
 });
 
 app.use(cors());
-app.use("/apua", express.static("../frontend/dist"));
+app.use("/", express.static("../frontend/dist"));
 app.use("/api/wordbank", router);
 
 const gracefulShutdown = () => {
