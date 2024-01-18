@@ -8,9 +8,8 @@ import { Button } from "react-bootstrap";
 
 export default function WriteTest() {
   const location = useLocation();
-  const [displayState, setDisplayState] = useState();
   const [checkState, setCheckState] = useState(false);
-  const { scoreState, setScoreState } = useContext(ScoreContext);
+  const { scoreState } = useContext(ScoreContext);
 
   const grading = () => {
     if (checkState) {
@@ -20,19 +19,6 @@ export default function WriteTest() {
         </div>
       );
     }
-  };
-
-  const toRandomize = (list) => {
-    let randomized = new Array(list.length - 1);
-    for (let i = 0; i < list.length; i++) {
-      const index = Math.floor(Math.random * list.length);
-      if (list[index] !== undefined) {
-        randomized.push(list[index]);
-      } else {
-        i--;
-      }
-    }
-    return randomized;
   };
 
   const createList = () => {
@@ -50,33 +36,14 @@ export default function WriteTest() {
           check={checkState}
         />
       );
-      if (i == promptList.length - 1) {
-        /*setDisplayState(questionList);*/
-      }
     }
-    return questionList;
+    return (
+      <div>
+        <div> Translate to {promptList[0].lang2}</div>
+        {questionList}
+      </div>
+    );
   };
-
-  /*toRandomize(promptList, (res) => {
-        console.log("moi");
-        for (let i = 0; i < res.length; i++) {
-          questionList.push(
-            <ScoreContext.Provider key={i} value={correct}>
-              <WriteObject
-                word1={res[i].word1}
-                word2={res[i].word2}
-                check={checkState}
-              />
-            </ScoreContext.Provider>
-          );
-        }
-        setDisplayState(questionList);
-      });
-    };
-    createList();
-  }, []);*/
-
-  /*useEffect(() => {}, [checkState]);*/
 
   return (
     <div className="m-3">
