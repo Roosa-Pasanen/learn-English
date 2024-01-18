@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-import { Card, Container, Row, Col } from "../node_modules/react-bootstrap";
+import { Card, Container, Row, Col } from "react-bootstrap";
 
 export default function WriteObject(props) {
   const [prompt] = useState(props.word1);

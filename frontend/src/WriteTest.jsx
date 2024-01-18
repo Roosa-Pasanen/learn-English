@@ -1,9 +1,9 @@
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import WriteObject from "./WriteObject.jsx";
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-import { Button } from "../node_modules/react-bootstrap";
+import { Button } from "react-bootstrap";
 
 export default function WriteTest() {
   const location = useLocation();

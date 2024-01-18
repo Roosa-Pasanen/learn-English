@@ -1,9 +1,9 @@
 import { useState, useEffect, useContext } from "react";
 import connector from "./utils/connector.js";
 import UpdateContext from "./UpdateContext.jsx";
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-import { Button, Card } from "../node_modules/react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 
 export default function DisplayObject(props) {
   const [prompt, setPrompt] = useState(props.word1);
