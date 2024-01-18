@@ -17,14 +17,12 @@ export default function WriteObject(props) {
   useEffect(() => {
     if (answer == cAnswer && !hasBeenGraded) {
       setHasBeenGraded(true);
-      console.log("+");
       let newScore = scoreState + 1;
       setScoreState(newScore);
       console.log(newScore);
     }
     if (answer !== cAnswer && hasBeenGraded) {
       setHasBeenGraded(false);
-      console.log("-");
       let newScore = scoreState - 1;
       setScoreState(newScore);
       console.log(newScore);
