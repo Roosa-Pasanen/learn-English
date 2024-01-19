@@ -9,28 +9,62 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import { Button, Form } from "react-bootstrap";
 
+/**
+ * Component containing the UI for the page preparing the test
+ *
+ * @returns The ui & components
+ */
 export default function PrepTest() {
+  // Stores the displayed objects
   const [displayState, setDisplayState] = useState("Loading...");
+  // Stores the database information of the objects
   const [promptList, setPromptList] = useState([]);
+  // Whether or not the object contents will be reversed for the test
   const [isSwapped, setIsSwapped] = useState(false);
-  const [languages, setLanguages] = useState("loading...");
+  // Stores form label text
+  const [languages, setLanguages] = useState("");
+
+  // Whether or not the component needs to be updated (used by child components)
   const [updateState, setUpdateState] = useState(false);
   const value = { updateState, setUpdateState };
+
+  // Stores whether or not child components can be edited
   const { adminState } = useContext(GlobalContext);
+  // Method for resetting score
   const { setScoreState } = useContext(ScoreContext);
 
+  /** Called if child components update database data */
+  useEffect(() => {
+    const dataFetch = () => {
+      setUpdateState(false);
+      try {
+        setTimeout(() => {
+          connector.fetchInfo((res) => {
+            setPromptList(res);
+            plainList(res, (res) => {
+              setDisplayState(res);
+            });
+          });
+        }, 50);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    dataFetch();
+  }, [updateState, setUpdateState, adminState]);
+
   /**
-   * A function for parsing object lists into text lists
+   * Takes a list of objects and passes them to the child components
    *
    * @param {object} l - list of objects
    * @param {string} end1 - object key 1
    * @param {string} end2 - object key 2
    * @param {string} s - character or string that separates the keys
-   * @returns - Parsed list
+   * @returns - Component array
    */
 
   const plainList = (l, callback) => {
-    const swapText = `${l[0].lang2} to ${l[0].lang1}`;
+    const swapText = `${l[0].lang2} to ${l[0].lang1}`; //Example: "Finnish to English"
     setLanguages(swapText);
     let fullList = [];
     for (let i = 0; i < l.length; i++) {
@@ -52,6 +86,14 @@ export default function PrepTest() {
     callback(fullList);
   };
 
+  /**
+   * Stores a default child object
+   *
+   * Used for creating new entries in the database. Displayed only if user has
+   * authority to add and modify information
+   *
+   * @returns A default object
+   */
   const addObject = () => {
     if (adminState) {
       return (
@@ -69,25 +111,6 @@ export default function PrepTest() {
       );
     }
   };
-
-  useEffect(() => {
-    const dataFetch = () => {
-      setUpdateState(false);
-      try {
-        setTimeout(() => {
-          connector.fetchInfo((res) => {
-            setPromptList(res);
-            plainList(res, (res) => {
-              setDisplayState(res);
-            });
-          });
-        }, 50);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    dataFetch();
-  }, [updateState, setUpdateState, adminState]);
 
   return (
     <div className="m-3">
@@ -107,7 +130,7 @@ export default function PrepTest() {
         </Link>
       </Button>
       <Form>
-        <Form.Check // prettier-ignore
+        <Form.Check
           type="switch"
           id="custom-switch"
           label={languages}
