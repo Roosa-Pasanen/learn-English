@@ -1,10 +1,10 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { useState, useContext } from "react";
 import WriteObject from "./WriteObject.jsx";
 import ScoreContext from "./ScoreContext.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import { Button } from "react-bootstrap";
+import { Button, Alert } from "react-bootstrap";
 
 export default function WriteTest() {
   const location = useLocation();
@@ -15,9 +15,9 @@ export default function WriteTest() {
   const grading = () => {
     if (checkState) {
       return (
-        <div>
+        <Alert variant={"info"}>
           You scored {scoreState}/{location.state.prompts.length}!
-        </div>
+        </Alert>
       );
     }
   };
@@ -65,19 +65,37 @@ export default function WriteTest() {
     );
   };
 
+  const submitBlock = () => {
+    if (!checkState) {
+      return (
+        <Button
+          variant="success"
+          size="lg"
+          onClick={() => {
+            setCheckState(true);
+          }}
+        >
+          Submit
+        </Button>
+      );
+    } else {
+      return (
+        <div>
+          <div>{grading()}</div>
+          <Button variant="light" size="lg">
+            <Link className="link-dark" to={""}>
+              {"Back"}
+            </Link>
+          </Button>
+        </div>
+      );
+    }
+  };
+
   return (
     <div className="m-3">
       <div>{createList()}</div>
-      <Button
-        variant="success"
-        size="lg"
-        onClick={() => {
-          setCheckState(true);
-        }}
-      >
-        Submit
-      </Button>
-      <div>{grading()}</div>
+      <div>{submitBlock()}</div>
     </div>
   );
 }
