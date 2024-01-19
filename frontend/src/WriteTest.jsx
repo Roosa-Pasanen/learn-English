@@ -29,7 +29,9 @@ export default function WriteTest() {
     }
     let questionList = [];
     if (!location.state.langSwap) {
-      setTranslateToState(promptList[0].lang2);
+      if (translateToState == "") {
+        setTranslateToState(promptList[0].lang2);
+      }
       for (let i = 0; i < promptList.length; i++) {
         questionList.push(
           <WriteObject
@@ -41,7 +43,9 @@ export default function WriteTest() {
         );
       }
     } else {
-      setTranslateToState(promptList[0].lang1);
+      if (translateToState == "") {
+        setTranslateToState(promptList[0].lang1);
+      }
       for (let i = 0; i < promptList.length; i++) {
         questionList.push(
           <WriteObject
