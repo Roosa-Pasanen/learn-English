@@ -10,7 +10,7 @@ const connector = {
    * @param {function} callback Callback function
    */
   fetchInfo: (callback) => {
-    fetch(`/api/wordbank`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/wordbank`)
       .then((res) => res.json())
       .then((data) => {
         callback(data);
@@ -31,7 +31,7 @@ const connector = {
    * @param {string} add - Address extention
    */
   putEntry: (callback, id, name, add) => {
-    fetch(`/api/wordbank/${add}/${id}`, {
+    fetch(`${import.meta.env.VITE_API_URL}/api/wordbank/${add}/${id}`, {
       method: "put",
       headers: {
         "Content-type": "application/json; charset=UTF-8",
@@ -61,7 +61,7 @@ const connector = {
    * @param {string} add - Address extention
    */
   deleteEntry: (callback, id1, id2, add) => {
-    fetch(`/api/wordbank/${add}`, {
+    fetch(`${import.meta.env.VITE_API_URL}/api/wordbank/${add}`, {
       method: "delete",
       headers: {
         "Content-type": "application/json; charset=UTF-8",
@@ -92,7 +92,7 @@ const connector = {
    * @param {number} langId2 - LanguageID of the second new object
    */
   postWord: (callback, name1, langId1, name2, langId2) => {
-    fetch(`/api/wordbank/word`, {
+    fetch(`${import.meta.env.VITE_API_URL}/api/wordbank/word`, {
       method: "POST",
       headers: {
         "Content-type": "application/json; charset=UTF-8",
