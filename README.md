@@ -4,7 +4,7 @@ This is a cloud application for learning English! Test whether or not you
 remember the translations!
 
 Link to the cloud here: https://learn-english-pasaroosa.onrender.com/
-Link to the code explanation (in Finnish) here:
+Link to the code explanation (in Finnish) here: https://drive.google.com/file/d/1LSsXoEGQ3RLfRYqAB79ZzZ-Zdf_shZ33/view?usp=sharing
 
 Current features
 
