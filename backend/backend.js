@@ -6,6 +6,10 @@ const { connect, close } = require("./connect.js");
 const port = 8080; // Define the port on which the server will run
 
 let server = undefined;
+
+/**
+ * Opens the mysql and server connections
+ */
 connect((err) => {
   // mysql connection
   if (err) {
@@ -25,10 +29,13 @@ connect((err) => {
   }
 });
 
-app.use(cors());
-app.use("/", express.static("./frontend/dist"));
-app.use("/api/wordbank", router);
+app.use(cors()); // Enable cors
+app.use("/", express.static("./frontend/dist")); // Set static content location
+app.use("/api/wordbank", router); // Deploy router
 
+/**
+ * Closes the mysql connection and server
+ */
 const gracefulShutdown = () => {
   console.log("Starting graceful shutdown...");
   if (server) {
@@ -54,5 +61,5 @@ const gracefulShutdown = () => {
   console.log("Shutdown complete.");
 };
 
-process.on("SIGTERM", gracefulShutdown); // Some other app requirest shutdown.
+process.on("SIGTERM", gracefulShutdown); // Some other app requires shutdown.
 process.on("SIGINT", gracefulShutdown); // ctrl-c
