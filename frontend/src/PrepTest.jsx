@@ -7,11 +7,13 @@ import GlobalContext from "./GlobalContext.jsx";
 import ScoreContext from "./ScoreContext.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import { Button } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 
 export default function PrepTest() {
   const [displayState, setDisplayState] = useState("Loading...");
   const [promptList, setPromptList] = useState([]);
+  const [isSwapped, setIsSwapped] = useState(false);
+  const [languages, setLanguages] = useState("loading...");
   const [updateState, setUpdateState] = useState(false);
   const value = { updateState, setUpdateState };
   const { adminState } = useContext(GlobalContext);
@@ -28,6 +30,8 @@ export default function PrepTest() {
    */
 
   const plainList = (l, callback) => {
+    const swapText = `${l[0].lang2} -> ${l[0].lang1}`;
+    setLanguages(swapText);
     let fullList = [];
     for (let i = 0; i < l.length; i++) {
       const temp = (
@@ -97,11 +101,21 @@ export default function PrepTest() {
         <Link
           className="link-dark"
           to={"begin"}
-          state={{ prompts: promptList }}
+          state={{ prompts: promptList, langSwap: isSwapped }}
         >
           {"Begin Test!"}
         </Link>
       </Button>
+      <Form>
+        <Form.Check // prettier-ignore
+          type="switch"
+          id="custom-switch"
+          label={languages}
+          onChange={() => {
+            isSwapped ? setIsSwapped(false) : setIsSwapped(true);
+          }}
+        />
+      </Form>
       <div>{displayState}</div>
       <div>{addObject()}</div>
     </div>
