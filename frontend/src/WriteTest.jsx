@@ -6,12 +6,26 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import { Button, Alert } from "react-bootstrap";
 
+/**
+ * Component containing the UI for the writing test
+ *
+ * @returns The writing test UI
+ */
 export default function WriteTest() {
+  // Stores passed down information
   const location = useLocation();
+  // Stores whether or not the test should be graded
   const [checkState, setCheckState] = useState(false);
+  // Stores the languages currently being translated to
   const [translateToState, setTranslateToState] = useState("");
+  // Stores the score
   const { scoreState } = useContext(ScoreContext);
 
+  /**
+   * Creates an array of child components based on information passed on by
+   * the previous page
+   * @returns the child component array
+   */
   const createList = () => {
     let promptList = location.state.prompts;
     if (promptList.length == 0 || promptList == undefined) {
@@ -19,8 +33,10 @@ export default function WriteTest() {
     }
     let questionList = [];
     if (!location.state.langSwap) {
+      // If the question and answer should be swapped
       if (translateToState == "") {
-        setTranslateToState(promptList[0].lang2);
+        // If translated to language hasn't been set
+        setTranslateToState(promptList[0].lang2); // Stores being translated to language
       }
       for (let i = 0; i < promptList.length; i++) {
         questionList.push(
@@ -34,7 +50,8 @@ export default function WriteTest() {
       }
     } else {
       if (translateToState == "") {
-        setTranslateToState(promptList[0].lang1);
+        // If translated to language hasn't been set
+        setTranslateToState(promptList[0].lang1); // Stores being translated to language
       }
       for (let i = 0; i < promptList.length; i++) {
         questionList.push(
@@ -55,14 +72,22 @@ export default function WriteTest() {
     );
   };
 
+  /**
+   * Determines the correct state of the end of the testa and returns it
+   * @returns The correct state
+   */
   const submitBlock = () => {
     if (!checkState) {
-      return submitAnswers();
+      return submitAnswers(); // Returns a submit button
     } else {
-      return grading();
+      return grading(); // Returns score and a button taking you back to the beginning
     }
   };
 
+  /**
+   * Method for storing the submit button
+   * @returns The submit button
+   */
   const submitAnswers = () => {
     return (
       <Button
@@ -77,6 +102,10 @@ export default function WriteTest() {
     );
   };
 
+  /**
+   * Stores the UI for a graded test
+   * @returns The stored UI
+   */
   const grading = () => {
     return (
       <div>
