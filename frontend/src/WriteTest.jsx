@@ -123,10 +123,23 @@ export default function WriteTest() {
     );
   };
 
-  return (
-    <div className="m-3">
-      <div>{createList()}</div>
-      <div>{submitBlock()}</div>
-    </div>
-  );
+  /**
+   * Error handling for the site
+   * @returns error message or the site UI
+   */
+  const handleError = () => {
+    try {
+      return (
+        <div className="m-3">
+          <div>{createList()}</div>
+          <div>{submitBlock()}</div>
+        </div>
+      );
+    } catch (err) {
+      console.log(err);
+      return <div>Oops! It seems like something went wrong!</div>;
+    }
+  };
+
+  return handleError();
 }
