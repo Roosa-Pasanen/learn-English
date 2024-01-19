@@ -30,7 +30,7 @@ export default function PrepTest() {
    */
 
   const plainList = (l, callback) => {
-    const swapText = `${l[0].lang2} -> ${l[0].lang1}`;
+    const swapText = `${l[0].lang2} to ${l[0].lang1}`;
     setLanguages(swapText);
     let fullList = [];
     for (let i = 0; i < l.length; i++) {
