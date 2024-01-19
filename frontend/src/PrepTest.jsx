@@ -64,7 +64,7 @@ export default function PrepTest() {
    */
 
   const plainList = (l, callback) => {
-    const swapText = `${l[0].lang2} to ${l[0].lang1}`; //Example: "Finnish to English"
+    const swapText = "Reverse languages in test";
     setLanguages(swapText);
     let fullList = [];
     for (let i = 0; i < l.length; i++) {
