@@ -3,6 +3,9 @@ const router = express.Router();
 const connect = require("../connect.js");
 router.use(express.json());
 
+/**
+ * Path for fetching information
+ */
 router.get("/", async (req, res) => {
   try {
     connect
@@ -23,6 +26,9 @@ router.get("/", async (req, res) => {
   }
 });
 
+/**
+ * Path for put requests to the "word" database table
+ */
 router.put("/word/:id([0-9]+)", async (req, res) => {
   try {
     connect
@@ -39,6 +45,9 @@ router.put("/word/:id([0-9]+)", async (req, res) => {
   }
 });
 
+/**
+ * Path for delete requests regarding words
+ */
 router.delete("/word", async (req, res) => {
   try {
     connect
@@ -55,9 +64,11 @@ router.delete("/word", async (req, res) => {
   }
 });
 
+/**
+ * Path for post requests regarding words
+ */
 router.post("/word", async (req, res) => {
   try {
-    // Name, languageid
     connect
       .postWord(
         req.body.langId1,
