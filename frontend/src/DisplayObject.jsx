@@ -5,6 +5,18 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import { Button, Card } from "react-bootstrap";
 
+/**
+ * React component which displays two strings.
+ *
+ * Displays two strings passed to it as props. These can be set to be editable
+ * by passing "true" in the props.editable
+ *
+ * @param {{word1, word2, editable}} props - Passed down props
+ *                                         - word1 -> first word as string
+ *                                         - word2 -> second word as string
+ *                                         - editable -> whether the object can be edited as boolean
+ * @returns The DisplayObject
+ */
 export default function DisplayObject(props) {
   const [prompt, setPrompt] = useState(props.word1);
   const [answer, setAnswer] = useState(props.word2);
