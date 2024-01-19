@@ -29,6 +29,16 @@ export default function WriteObject(props) {
     }
   }, [answer]);
 
+  const toCheck = () => {
+    if (!check) {
+      return test();
+    } else if (answer == cAnswer) {
+      return correct();
+    } else {
+      return incorrect();
+    }
+  };
+
   const test = () => {
     return (
       <Card className="m-2">
@@ -43,49 +53,41 @@ export default function WriteObject(props) {
     );
   };
 
-  const grading = () => {
-    if (answer == cAnswer) {
-      return (
-        <Card className="m-2">
-          <Card.Body>
-            <Container>
-              <Row className="align-items-center">
-                <Col>{prompt}</Col>
-                <Col>{answer}</Col>
-                <Col className="text-bg-success rounded">
-                  <div>Correct!</div>
-                </Col>
-              </Row>
-            </Container>
-          </Card.Body>
-        </Card>
-      );
-    } else {
-      return (
-        <Card className="m-2">
-          <Card.Body>
-            <Container>
-              <Row className="align-items-center">
-                <Col>{prompt}</Col>
-                <Col>{answer}</Col>
-                <Col className="text-bg-danger rounded">
-                  <div>Answer:</div>
-                  <div>{cAnswer}</div>
-                </Col>
-              </Row>
-            </Container>
-          </Card.Body>
-        </Card>
-      );
-    }
+  const correct = () => {
+    return (
+      <Card className="m-2">
+        <Card.Body>
+          <Container>
+            <Row className="align-items-center">
+              <Col>{prompt}</Col>
+              <Col>{answer}</Col>
+              <Col className="text-bg-success rounded">
+                <div>Correct!</div>
+              </Col>
+            </Row>
+          </Container>
+        </Card.Body>
+      </Card>
+    );
   };
 
-  const toCheck = () => {
-    if (!check) {
-      return test();
-    } else {
-      return grading();
-    }
+  const incorrect = () => {
+    return (
+      <Card className="m-2">
+        <Card.Body>
+          <Container>
+            <Row className="align-items-center">
+              <Col>{prompt}</Col>
+              <Col>{answer}</Col>
+              <Col className="text-bg-danger rounded">
+                <div>Answer:</div>
+                <div>{cAnswer}</div>
+              </Col>
+            </Row>
+          </Container>
+        </Card.Body>
+      </Card>
+    );
   };
 
   return toCheck();
