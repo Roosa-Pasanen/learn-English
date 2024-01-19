@@ -9,7 +9,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Button } from "react-bootstrap";
 
 function App() {
+  //Stores whether or not the user is allowed to edit information
   const [adminState, setAdminState] = useState(false);
+  //Stores the state of test scoring
   const [scoreState, setScoreState] = useState(0);
   const admin = { adminState };
 
