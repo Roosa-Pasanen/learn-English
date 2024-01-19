@@ -20,6 +20,46 @@ export default function DisplayObject(props) {
     setEditable(props.editable);
   }, [props.word1, props.word2, props.editable]);
 
+  const isEditable = () => {
+    if (!isEditing) {
+      return display();
+    } else {
+      return editing();
+    }
+  };
+
+  const display = () => {
+    if (editable) {
+      return (
+        <Card className="m-2">
+          <Card.Body className="d-flex justify-content-around align-items-center">
+            <div>
+              {prompt} - {answer}
+            </div>
+            <Button
+              variant="light"
+              onClick={() => {
+                setIsEditing(true);
+              }}
+            >
+              Edit
+            </Button>
+          </Card.Body>
+        </Card>
+      );
+    } else {
+      return (
+        <Card className="m-2">
+          <Card.Body className="mb-2">
+            <Card.Text style={{ fontSizeAdjust: "0.6" }}>
+              {prompt} - {answer}
+            </Card.Text>
+          </Card.Body>
+        </Card>
+      );
+    }
+  };
+
   const editing = () => {
     return (
       <Card className="m-2">
@@ -67,38 +107,6 @@ export default function DisplayObject(props) {
         </Card.Body>
       </Card>
     );
-  };
-
-  const display = () => {
-    if (editable) {
-      return (
-        <Card className="m-2">
-          <Card.Body className="d-flex justify-content-around align-items-center">
-            <div>
-              {prompt} - {answer}
-            </div>
-            <Button
-              variant="light"
-              onClick={() => {
-                setIsEditing(true);
-              }}
-            >
-              Edit
-            </Button>
-          </Card.Body>
-        </Card>
-      );
-    } else {
-      return (
-        <Card className="m-2">
-          <Card.Body className="mb-2">
-            <Card.Text style={{ fontSizeAdjust: "0.6" }}>
-              {prompt} - {answer}
-            </Card.Text>
-          </Card.Body>
-        </Card>
-      );
-    }
   };
 
   const toSave = (save) => {
@@ -154,14 +162,6 @@ export default function DisplayObject(props) {
       props.wordId2,
       "word"
     );
-  };
-
-  const isEditable = () => {
-    if (!isEditing) {
-      return display();
-    } else {
-      return editing();
-    }
   };
 
   return isEditable();
