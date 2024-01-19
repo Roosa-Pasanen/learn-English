@@ -9,6 +9,7 @@ import { Button } from "react-bootstrap";
 export default function WriteTest() {
   const location = useLocation();
   const [checkState, setCheckState] = useState(false);
+  const [translateToState, setTranslateToState] = useState("");
   const { scoreState } = useContext(ScoreContext);
 
   const grading = () => {
@@ -27,19 +28,34 @@ export default function WriteTest() {
       return <div>Error: No content</div>;
     }
     let questionList = [];
-    for (let i = 0; i < promptList.length; i++) {
-      questionList.push(
-        <WriteObject
-          key={i}
-          word1={promptList[i].word1}
-          word2={promptList[i].word2}
-          check={checkState}
-        />
-      );
+    if (!location.state.langSwap) {
+      setTranslateToState(promptList[0].lang2);
+      for (let i = 0; i < promptList.length; i++) {
+        questionList.push(
+          <WriteObject
+            key={i}
+            word1={promptList[i].word1}
+            word2={promptList[i].word2}
+            check={checkState}
+          />
+        );
+      }
+    } else {
+      setTranslateToState(promptList[0].lang1);
+      for (let i = 0; i < promptList.length; i++) {
+        questionList.push(
+          <WriteObject
+            key={i}
+            word1={promptList[i].word2}
+            word2={promptList[i].word1}
+            check={checkState}
+          />
+        );
+      }
     }
     return (
       <div>
-        <div> Translate to {promptList[0].lang2}</div>
+        <div> Translate to {translateToState}</div>
         {questionList}
       </div>
     );
