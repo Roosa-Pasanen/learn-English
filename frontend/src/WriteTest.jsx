@@ -1,4 +1,4 @@
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import { useState, useContext } from "react";
 import WriteObject from "./WriteObject.jsx";
 import ScoreContext from "./ScoreContext.jsx";
@@ -20,6 +20,7 @@ export default function WriteTest() {
   const [translateToState, setTranslateToState] = useState("");
   // Stores the score
   const { scoreState } = useContext(ScoreContext);
+  const history = useHistory();
 
   /**
    * Creates an array of child components based on information passed on by
@@ -114,10 +115,8 @@ export default function WriteTest() {
             You scored {scoreState}/{location.state.prompts.length}!
           </Alert>
         </div>
-        <Button variant="light" size="lg">
-          <Link className="link-dark" to={"/"}>
-            {"Back"}
-          </Link>
+        <Button variant="light" size="lg" onClick={() => history.goBack()}>
+          Back
         </Button>
       </div>
     );
