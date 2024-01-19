@@ -187,8 +187,8 @@ export default function DisplayObject(props) {
           props.langId2
         );
         // Reset the new object
-        setPrompt("New word");
-        setAnswer("Translation");
+        setNewPrompt("New word");
+        setNewAnswer("Translation");
       } else {
         if (prompt !== newPrompt) {
           // If there's changes in the first word
