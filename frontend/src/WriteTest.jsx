@@ -115,7 +115,7 @@ export default function WriteTest() {
           </Alert>
         </div>
         <Button variant="light" size="lg">
-          <Link className="link-dark" to={""}>
+          <Link className="link-dark" to={"/"}>
             {"Back"}
           </Link>
         </Button>
