@@ -12,16 +12,6 @@ export default function WriteTest() {
   const [translateToState, setTranslateToState] = useState("");
   const { scoreState } = useContext(ScoreContext);
 
-  const grading = () => {
-    if (checkState) {
-      return (
-        <Alert variant={"info"}>
-          You scored {scoreState}/{location.state.prompts.length}!
-        </Alert>
-      );
-    }
-  };
-
   const createList = () => {
     let promptList = location.state.prompts;
     if (promptList.length == 0 || promptList == undefined) {
@@ -67,29 +57,41 @@ export default function WriteTest() {
 
   const submitBlock = () => {
     if (!checkState) {
-      return (
-        <Button
-          variant="success"
-          size="lg"
-          onClick={() => {
-            setCheckState(true);
-          }}
-        >
-          Submit
-        </Button>
-      );
+      return submitAnswers();
     } else {
-      return (
-        <div>
-          <div>{grading()}</div>
-          <Button variant="light" size="lg">
-            <Link className="link-dark" to={""}>
-              {"Back"}
-            </Link>
-          </Button>
-        </div>
-      );
+      return grading();
     }
+  };
+
+  const submitAnswers = () => {
+    return (
+      <Button
+        variant="success"
+        size="lg"
+        onClick={() => {
+          setCheckState(true);
+        }}
+      >
+        Submit
+      </Button>
+    );
+  };
+
+  const grading = () => {
+    return (
+      <div>
+        <div>
+          <Alert variant={"info"}>
+            You scored {scoreState}/{location.state.prompts.length}!
+          </Alert>
+        </div>
+        <Button variant="light" size="lg">
+          <Link className="link-dark" to={""}>
+            {"Back"}
+          </Link>
+        </Button>
+      </div>
+    );
   };
 
   return (
