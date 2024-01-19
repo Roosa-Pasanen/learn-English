@@ -8,6 +8,11 @@ import ScoreContext from "./ScoreContext.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button } from "react-bootstrap";
 
+/**
+ * Contains the application's global elements.
+ *
+ * @returns The application
+ */
 function App() {
   //Stores whether or not the user is allowed to edit information
   const [adminState, setAdminState] = useState(false);
