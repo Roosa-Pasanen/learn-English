@@ -44,13 +44,11 @@ export default function WriteObject(props) {
       setHasBeenGraded(true);
       let newScore = scoreState + 1;
       setScoreState(newScore);
-      console.log(newScore);
     }
     if (answer !== cAnswer && hasBeenGraded) {
       setHasBeenGraded(false);
       let newScore = scoreState - 1;
       setScoreState(newScore);
-      console.log(newScore);
     }
   }, [answer]);
 
